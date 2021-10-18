@@ -7,21 +7,31 @@ import App from './App';
 
 const initialState = {
   count: 0,
-  test: true,
+  step: 1
 };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
     case 'increment': {
       const newState = {
-        count: state.count + 1,
+        ...state,
+        count: state.count + state.step,
       };
 
       return newState;
     }
     case 'decrement': {
       const newState = {
-        count: state.count - 1,
+        ...state,
+        count: state.count - state.step,
+      };
+
+      return newState;
+    }
+    case 'setStep': {
+      const newState = {
+        ...state,
+        step: action.newStep
       };
 
       return newState;
