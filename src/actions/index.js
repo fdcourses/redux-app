@@ -12,9 +12,9 @@ export const decrement = () => {
   };
 };
 
-export const setStep = (value) => {
+export const setStep = (data) => {
   return {
     type: ACTION_TYPES.SET_STEP,
-    newStep: value,
+    newStep: data,
   };
 };

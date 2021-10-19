@@ -3,32 +3,19 @@ import * as actionCreators from './actions';
 
 function App(props) {
   console.log(props);
-  const { count, step, dispatch } = props;
-
-  const increment = () => {
-    const action = actionCreators.increment();
-
-    dispatch(action);
-  };
-
-  const decrement = () => {
-    const action = actionCreators.decrement();
-
-    dispatch(action);
-  };
+  const { count, step, incrementAction, decrementAction, setStepAction } =
+    props;
 
   const changeStep = ({ target: { value } }) => {
-    const action = actionCreators.setStep(Number(value));
-
-    dispatch(action);
+    setStepAction(Number(value));
   };
 
   return (
     <div>
       <h1>Counter is: {count}</h1>
       <input value={step} onChange={changeStep} />
-      <button onClick={decrement}>Отнять</button>
-      <button onClick={increment}>Добавить</button>
+      <button onClick={decrementAction}>Отнять</button>
+      <button onClick={incrementAction}>Добавить</button>
     </div>
   );
 }
@@ -37,7 +24,15 @@ function mapStateToProps(state) {
   return state;
 }
 
-export default connect(mapStateToProps)(App);
+function mapDispatchToProps(dispatch) {
+  return {
+    incrementAction: () => dispatch(actionCreators.increment()),
+    decrementAction: () => dispatch(actionCreators.decrement()),
+    setStepAction: (newStep) => dispatch(actionCreators.setStep(newStep)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 // const withProps = connect(mapStateToProps);
 // const AppWithProps = withProps(App);
