@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as actionCreators from '../../actions';
+import * as actionCreators from '../../actions/taskCreators';
 
 const TaskList = (props) => {
   const { tasks, deleteAction, updateAction } = props;
@@ -37,7 +37,7 @@ const TaskList = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return { tasks: state.tasks };
+  return { tasks: state.task.tasks };
 };
 
 const mapDispatchToProps = (dispatch) => {

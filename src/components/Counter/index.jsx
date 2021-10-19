@@ -1,14 +1,9 @@
 import { connect } from 'react-redux';
-import * as actionCreators from '../../actions';
+import * as actionCreators from '../../actions/counterCreators';
 
 function Counter(props) {
-  const { 
-    count, 
-    step, 
-    incrementAction, 
-    decrementAction, 
-    setStepAction 
-  } = props;
+  const { count, step, incrementAction, decrementAction, setStepAction } =
+    props;
 
   const changeStep = ({ target: { value } }) => {
     setStepAction(Number(value));
@@ -25,7 +20,10 @@ function Counter(props) {
 }
 
 function mapStateToProps(state) {
-  return state;
+  const {
+    counter: { step, count },
+  } = state;
+  return { step, count };
 }
 
 function mapDispatchToProps(dispatch) {
