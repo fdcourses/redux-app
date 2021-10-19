@@ -1,38 +1,20 @@
-import { connect } from 'react-redux';
-import * as actionCreators from './actions';
+import React from 'react';
+import Counter from './components/Counter';
+import TaskForm from './components/TaskForm';
+import TaskList from './components/TaskList';
 
-function App(props) {
-  console.log(props);
-  const { count, step, incrementAction, decrementAction, setStepAction } =
-    props;
-
-  const changeStep = ({ target: { value } }) => {
-    setStepAction(Number(value));
-  };
-
+const App = () => {
   return (
     <div>
-      <h1>Counter is: {count}</h1>
-      <input value={step} onChange={changeStep} />
-      <button onClick={decrementAction}>Отнять</button>
-      <button onClick={incrementAction}>Добавить</button>
+      <Counter />
+      <TaskForm />
+      <TaskList />
     </div>
   );
 }
 
-function mapStateToProps(state) {
-  return state;
-}
+export default App;
 
-function mapDispatchToProps(dispatch) {
-  return {
-    incrementAction: () => dispatch(actionCreators.increment()),
-    decrementAction: () => dispatch(actionCreators.decrement()),
-    setStepAction: (newStep) => dispatch(actionCreators.setStep(newStep)),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 // const withProps = connect(mapStateToProps);
 // const AppWithProps = withProps(App);
