@@ -3,13 +3,8 @@ import * as actionCreators from '../../actions/counterCreators';
 import { bindActionCreators } from 'redux';
 
 function Counter(props) {
-  const { step, count } = useSelector((state) => {
-    const {
-      counter: { step, count },
-    } = state;
+  const { step, count } = useSelector(({counter}) => counter);
 
-    return { step, count };
-  });
   const dispatch = useDispatch();
 
   const { increment, decrement, setStep } = bindActionCreators(
